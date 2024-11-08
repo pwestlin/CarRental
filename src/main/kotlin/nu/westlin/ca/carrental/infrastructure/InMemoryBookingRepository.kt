@@ -3,7 +3,9 @@ package nu.westlin.ca.carrental.infrastructure
 import nu.westlin.ca.carrental.application.BookingRepository
 import nu.westlin.ca.carrental.domain.Booking
 import nu.westlin.ca.carrental.domain.BookingId
+import nu.westlin.ca.carrental.domain.Customer
 import nu.westlin.ca.carrental.domain.CustomerId
+import nu.westlin.ca.carrental.domain.Id
 import org.springframework.stereotype.Repository
 
 @Repository
@@ -18,5 +20,9 @@ class InMemoryBookingRepository : BookingRepository {
 
     override fun deleteAllCustomerBookings(customerId: CustomerId) {
         bookings.removeIf { customer -> customer.id == customerId }
+    }
+
+    override fun getBookingsForCustomer(customerId: Id<Customer, String>): List<Booking> {
+        return bookings.filter { booking -> booking.customerId == customerId }
     }
 }
