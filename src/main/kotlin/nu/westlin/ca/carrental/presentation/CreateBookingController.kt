@@ -23,6 +23,7 @@ class CreateBookingController(
             is CreateBookingResult.Created -> ResponseEntity.ok(CreateNewCustomerResponse.Created(foo.bookingId))
             CreateBookingResult.CustomerNotFound -> ResponseEntity.badRequest().body(CreateNewCustomerResponse.Error.CustomerNotFound)
             CreateBookingResult.CarNotFound -> ResponseEntity.badRequest().body(CreateNewCustomerResponse.Error.CarNotFound)
+            CreateBookingResult.TooPoor -> ResponseEntity.badRequest().body(CreateNewCustomerResponse.Error.TooPoor)
         }
     }
 }
@@ -33,5 +34,6 @@ sealed interface CreateNewCustomerResponse {
     sealed interface Error : CreateNewCustomerResponse {
         data object CustomerNotFound : CreateNewCustomerResponse
         data object CarNotFound : CreateNewCustomerResponse
+        data object TooPoor : CreateNewCustomerResponse
     }
 }

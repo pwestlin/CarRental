@@ -18,11 +18,10 @@ import java.util.UUID
 class InitializeDataAtStartup(
     private val customerRepository: CustomerRepository,
     private val carRepository: CarRepository,
-    private val bookingRepository: BookingRepository,
+    private val bookingRepository: BookingRepository
 ) {
 
     private val logger = KotlinLogging.logger {}
-
 
     @EventListener
     fun onApplicationEvent(event: ContextRefreshedEvent) {
@@ -30,19 +29,22 @@ class InitializeDataAtStartup(
             id = CarId.createCarId(),
             type = Car.Type.Sport,
             brand = "Posrche",
-            model = "911 Turbo"
+            model = "911 Turbo",
+            category = Car.Category.Exclusive
         ).also(carRepository::add)
         Car(
             id = CarId.createCarId(),
             type = Car.Type.Sedan,
             brand = "Subaru",
-            model = "Impreza"
+            model = "Impreza",
+            category = Car.Category.Basic
         ).also(carRepository::add)
         val volvo = Car(
             id = CarId.createCarId(),
             type = Car.Type.Hatchback,
             brand = "Volvo",
-            model = "V60"
+            model = "V60",
+            category = Car.Category.Basic
         ).also(carRepository::add)
 
         Customer(
@@ -50,7 +52,7 @@ class InitializeDataAtStartup(
             email = "poor@man.com",
             name = "Poor Man",
             phoneNumber = "123",
-            type = Customer.Type.Basic,
+            type = Customer.Type.Basic
         ).also { customer ->
             customerRepository.add(customer)
 
@@ -72,7 +74,7 @@ class InitializeDataAtStartup(
             email = "rich@woman.com",
             name = "Rich Woman",
             phoneNumber = "456",
-            type = Customer.Type.Gold,
+            type = Customer.Type.Gold
         ).also { customer ->
             customerRepository.add(customer)
 

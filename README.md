@@ -13,3 +13,11 @@ Simulates a web application for renting cars. The application has e REST API.
 * Kotlin
 * Gradle
 
+## Packages
+
+The root packages are:
+
+* [application](src/main/kotlin/nu/westlin/ca/carrental/application)
+* [domain](src/main/kotlin/nu/westlin/ca/carrental/domain)
+* [infrastructure](src/main/kotlin/nu/westlin/ca/carrental/infrastructure)
+* [presentation](src/main/kotlin/nu/westlin/ca/carrental/presentation)

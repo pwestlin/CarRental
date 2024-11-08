@@ -14,7 +14,9 @@ class InMemoryCustomerRepository : CustomerRepository {
         customers.add(customer)
     }
 
-    override fun delete(customerId: CustomerId): Boolean = customers.removeIf { customer -> customer.id == customerId }
+    override fun delete(customerId: CustomerId): Boolean {
+        return customers.removeIf { customer -> customer.id == customerId }
+    }
 
     override fun find(customerId: Id<Customer, String>): Customer? {
         return customers.firstOrNull { customer -> customer.id == customerId }

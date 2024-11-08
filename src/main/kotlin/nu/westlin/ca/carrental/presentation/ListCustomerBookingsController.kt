@@ -17,7 +17,6 @@ class ListCustomerBookingsController(
     fun createNewCustomer(
         @PathVariable customerId: CustomerId
     ): ResponseEntity<List<Booking>> {
-        // TODO pevest: Check if customer exist?
         return ResponseEntity.ok(listCustomerBookings.getBookings(customerId))
     }
 }

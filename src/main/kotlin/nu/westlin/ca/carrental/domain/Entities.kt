@@ -5,12 +5,12 @@ import java.util.UUID
 
 data class Customer(
     val id: Id<Customer, String>,
-    // TODO pevest: Should be a value object with rules
-    // TODO pevest: Should this be called "id: Email"` or is that not "clean"? :
+    // TODO pevest: Should be a value object with rules - simple regex that doesn't work for all cases but... :D - ^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$
+    // TODO pevest: Parse, don't validate
     val email: String,
     // TODO pevest: Should be a value object with rules?
     val name: String,
-    // TODO pevest: Should be a value object with rules
+    // TODO pevest: Should be a value object with rules - ^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$
     val phoneNumber: String,
     val type: Type
 ) {
@@ -26,12 +26,18 @@ data class Car(
     // TODO pevest: Should be a class
     val brand: String,
     // TODO pevest: Should be a class
-    val model: String
+    val model: String,
+    val category: Category
 ) {
     enum class Type {
         Sport,
         Sedan,
         Hatchback
+    }
+
+    enum class Category {
+        Basic,
+        Exclusive
     }
 }
 

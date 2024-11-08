@@ -19,7 +19,7 @@ class InMemoryBookingRepository : BookingRepository {
     override fun delete(bookingId: BookingId): Boolean = bookings.removeIf { customer -> customer.id == bookingId }
 
     override fun deleteAllCustomerBookings(customerId: CustomerId) {
-        bookings.removeIf { customer -> customer.id == customerId }
+        bookings.removeIf { booking -> booking.customerId == customerId }
     }
 
     override fun getBookingsForCustomer(customerId: Id<Customer, String>): List<Booking> {

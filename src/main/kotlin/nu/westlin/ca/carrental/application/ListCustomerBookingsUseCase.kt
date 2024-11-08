@@ -12,5 +12,4 @@ class ListCustomerBookingsUseCase(
     fun getBookings(customerId: CustomerId): List<Booking> {
         return bookingRepository.getBookingsForCustomer(customerId)
     }
-
 }
