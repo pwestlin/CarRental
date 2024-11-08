@@ -8,6 +8,7 @@ import nu.westlin.ca.carrental.domain.CarId
 import nu.westlin.ca.carrental.domain.Customer
 import nu.westlin.ca.carrental.domain.CustomerId
 import nu.westlin.ca.carrental.domain.Id
+import org.springframework.context.annotation.Profile
 import org.springframework.context.event.ContextRefreshedEvent
 import org.springframework.context.event.EventListener
 import org.springframework.stereotype.Component
@@ -15,6 +16,7 @@ import java.time.LocalDateTime
 import java.util.UUID
 
 @Component
+@Profile("initwithdata")
 class InitializeDataAtStartup(
     private val customerRepository: CustomerRepository,
     private val carRepository: CarRepository,

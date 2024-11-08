@@ -21,3 +21,7 @@ The root packages are:
 * [domain](src/main/kotlin/nu/westlin/ca/carrental/domain)
 * [infrastructure](src/main/kotlin/nu/westlin/ca/carrental/infrastructure)
 * [presentation](src/main/kotlin/nu/westlin/ca/carrental/presentation)
+
+## Test data
+
+If you want to start the application with some user, cars and booking use teh Spring profile `initwithdata`.
