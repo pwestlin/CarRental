@@ -1,17 +1,10 @@
 package nu.westlin.ca.carrental.infrastructure
 
+import nu.westlin.ca.carrental.application.BookingRepository
 import nu.westlin.ca.carrental.domain.Booking
 import nu.westlin.ca.carrental.domain.BookingId
 import nu.westlin.ca.carrental.domain.CustomerId
 import org.springframework.stereotype.Repository
-
-interface BookingRepository {
-    fun add(booking: Booking)
-
-    fun delete(bookingId: BookingId): Boolean
-
-    fun deleteAllCustomerBookings(customerId: CustomerId)
-}
 
 @Repository
 class InMemoryBookingRepository : BookingRepository {

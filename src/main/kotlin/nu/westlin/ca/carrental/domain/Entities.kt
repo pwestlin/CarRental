@@ -1,7 +1,7 @@
 package nu.westlin.ca.carrental.domain
 
 import java.time.LocalDateTime
-import java.util.*
+import java.util.UUID
 
 data class Customer(
     val id: Id<Customer, String>,
@@ -49,8 +49,11 @@ data class Booking(
 
 @Suppress("unused")
 @JvmInline
-value class Id<out T, V>(val value: V)
+value class Id<out T, V>(val value: V) {
+    companion object
+}
 
+// TODO pevest: Change UUID to Int for easier manual testing
 typealias BookingId = Id<Customer, UUID>
 typealias CarId = Id<Car, UUID>
 typealias CustomerId = Id<Customer, String>

@@ -1,7 +1,6 @@
 package nu.westlin.ca.carrental.application
 
 import nu.westlin.ca.carrental.domain.CustomerId
-import nu.westlin.ca.carrental.infrastructure.BookingRepository
 import org.springframework.stereotype.Service
 
 @Service

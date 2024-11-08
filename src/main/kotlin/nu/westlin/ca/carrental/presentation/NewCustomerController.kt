@@ -19,8 +19,8 @@ class NewCustomerController(
         @RequestBody newCustomer: NewCustomer
     ): ResponseEntity<Unit> {
         return when (createCustomer.createCustomer(newCustomer)) {
+            is CreateCustomerResult.Success -> ResponseEntity.ok().build()
             CreateCustomerResult.AlreadyExist -> ResponseEntity.status(HttpStatus.CONFLICT).build()
-            CreateCustomerResult.Success -> ResponseEntity.ok().build()
         }
     }
 }
