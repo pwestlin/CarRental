@@ -14,7 +14,6 @@ data class Customer(
     val phoneNumber: String,
     val type: Type
 ) {
-
     enum class Type {
         Basic,
         Gold
@@ -29,7 +28,6 @@ data class Car(
     // TODO pevest: Should be a class
     val model: String
 ) {
-
     enum class Type {
         Sport,
         Sedan,
@@ -43,7 +41,6 @@ data class Booking(
     val carId: CarId,
     val period: Period
 ) {
-
     data class Period(
         val pickupTime: LocalDateTime,
         val returnTime: LocalDateTime

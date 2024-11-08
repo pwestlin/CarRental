@@ -7,12 +7,14 @@ import org.springframework.stereotype.Repository
 
 interface BookingRepository {
     fun add(booking: Booking)
+
     fun delete(bookingId: BookingId): Boolean
-    fun deleteAllBookings(customerId: CustomerId)
+
+    fun deleteAllCustomerBookings(customerId: CustomerId)
 }
 
 @Repository
-class InMemoryBookingRepository: BookingRepository {
+class InMemoryBookingRepository : BookingRepository {
     private val bookings: MutableList<Booking> = mutableListOf()
 
     override fun add(booking: Booking) {
@@ -20,8 +22,8 @@ class InMemoryBookingRepository: BookingRepository {
     }
 
     override fun delete(bookingId: BookingId): Boolean = bookings.removeIf { customer -> customer.id == bookingId }
-    override fun deleteAllBookings(customerId: CustomerId) {
+
+    override fun deleteAllCustomerBookings(customerId: CustomerId) {
         bookings.removeIf { customer -> customer.id == customerId }
     }
-
 }

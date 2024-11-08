@@ -1,8 +1,11 @@
 plugins {
-    kotlin("jvm") version "1.9.25"
-    kotlin("plugin.spring") version "1.9.25"
+    "2.0.21".let { kotlinVersion ->
+        kotlin("jvm") version kotlinVersion
+        kotlin("plugin.spring") version kotlinVersion
+    }
     id("org.springframework.boot") version "3.3.5"
     id("io.spring.dependency-management") version "1.1.6"
+    id("org.jlleitschuh.gradle.ktlint") version "12.1.1"
 }
 
 group = "nu.westlin.ca"
@@ -35,4 +38,28 @@ kotlin {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+
+    addTestListener(
+        object : TestListener {
+            override fun beforeTest(p0: TestDescriptor?) = Unit
+            override fun beforeSuite(p0: TestDescriptor?) = Unit
+            override fun afterTest(desc: TestDescriptor, result: TestResult) = Unit
+            override fun afterSuite(desc: TestDescriptor, result: TestResult) {
+                if (desc.parent == null) {
+                    val output =
+                        "${desc.name} results: ${result.resultType} (${result.testCount} tests, ${result.successfulTestCount} successes, ${result.failedTestCount} failures, ${result.skippedTestCount} skipped)"
+                    val startItem = "|  "
+                    val endItem = "  |"
+                    val repeatLength = startItem.length + output.length + endItem.length
+                    println(
+                        "\n" + ("-".repeat(repeatLength)) + "\n" + startItem + output + endItem + "\n" + ("-".repeat(repeatLength))
+                    )
+                }
+            }
+        }
+    )
+}
+
+configure<org.jlleitschuh.gradle.ktlint.KtlintExtension> {
+    verbose.set(true)
 }

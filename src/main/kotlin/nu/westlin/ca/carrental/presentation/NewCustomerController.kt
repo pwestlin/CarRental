@@ -14,10 +14,11 @@ import org.springframework.web.bind.annotation.RestController
 class NewCustomerController(
     private val createCustomer: CreateCustomerUseCase
 ) {
-
     @PostMapping("")
-    fun createNewCustomer(@RequestBody newCustomer: NewCustomer): ResponseEntity<Unit> {
-        return when(createCustomer.createCustomer(newCustomer)) {
+    fun createNewCustomer(
+        @RequestBody newCustomer: NewCustomer
+    ): ResponseEntity<Unit> {
+        return when (createCustomer.createCustomer(newCustomer)) {
             CreateCustomerResult.AlreadyExist -> ResponseEntity.status(HttpStatus.CONFLICT).build()
             CreateCustomerResult.Success -> ResponseEntity.ok().build()
         }
