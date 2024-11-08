@@ -5,6 +5,6 @@ Simulates a web application for renting cars. The application has e REST API.
 
 ## Implemenation
 ### Tech stack
-Spring Boot Web
-Kotlin
-Gradle
+* Spring Boot Web
+* Kotlin
+* Gradle
