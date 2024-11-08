@@ -24,4 +24,4 @@ The root packages are:
 
 ## Test data
 
-If you want to start the application with some user, cars and booking use teh Spring profile `initwithdata`.
+If you want to start the application with some users, cars and bookings use the Spring profile `initwithdata`.
