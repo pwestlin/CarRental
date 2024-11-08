@@ -47,7 +47,6 @@ sealed interface CreateBookingResult {
 }
 
 data class NewBooking(
-    // TODO pevest: Should be CustomerId?
     val customerId: CustomerId,
     val carId: CarId,
     val period: Booking.Period
