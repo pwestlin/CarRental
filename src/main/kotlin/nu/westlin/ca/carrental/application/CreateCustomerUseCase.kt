@@ -13,23 +13,24 @@ class CreateCustomerUseCase(
         return customerRepository.find(customerId)?.let {
             CreateCustomerResult.AlreadyExist
         } ?: run {
+            val customer = Customer(
+                id = customerId,
+                email = newCustomer.email,
+                name = newCustomer.name,
+                phoneNumber = newCustomer.phoneNumber,
+                type = Customer.Type.Basic
+            )
             customerRepository.add(
-                Customer(
-                    id = customerId,
-                    email = newCustomer.email,
-                    name = newCustomer.name,
-                    phoneNumber = newCustomer.phoneNumber,
-                    type = Customer.Type.Basic
-                )
+                customer
             )
 
-            CreateCustomerResult.Success(customerId)
+            CreateCustomerResult.Success(customer)
         }
     }
 }
 
 sealed interface CreateCustomerResult {
-    data class Success(val customerId: CustomerId) : CreateCustomerResult
+    data class Success(val customer: Customer) : CreateCustomerResult
 
     data object AlreadyExist : CreateCustomerResult
 }
@@ -38,4 +39,6 @@ data class NewCustomer(
     val email: String,
     val name: String,
     val phoneNumber: String
-)
+) {
+    companion object
+}

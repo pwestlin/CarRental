@@ -23,6 +23,7 @@ class CreateBookingUseCase(
         return if (customer != null) {
             val car = carRepository.find(newBooking.carId)
             if (car != null) {
+                // TODO pevest: I think this rule is a business rules and therefore should reside in the domain package
                 if (car.category == Car.Category.Exclusive && customer.type == Customer.Type.Gold) {
                     val booking = newBooking.toBooking()
                     bookingRepository.add(booking)
