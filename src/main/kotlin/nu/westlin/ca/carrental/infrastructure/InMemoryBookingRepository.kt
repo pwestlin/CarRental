@@ -25,4 +25,6 @@ class InMemoryBookingRepository : BookingRepository {
     override fun getBookingsForCustomer(customerId: Id<Customer, String>): List<Booking> {
         return bookings.filter { booking -> booking.customerId == customerId }
     }
+
+    override fun getBookings(): List<Booking> = bookings.toList()
 }

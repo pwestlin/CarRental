@@ -63,7 +63,6 @@ class CarRentalApplicationIntegrationTest(
 
     @Test
     fun `create customer`() {
-        // TODO pevest: Create extension function example()
         val newCustomer = NewCustomer.example()
 
         val response = restClient.post()
@@ -85,10 +84,9 @@ class CarRentalApplicationIntegrationTest(
 
     @Test
     fun `delete customer that have no bookings`() {
-        // TODO pevest: Create extension function example()
         val newCustomer = NewCustomer.example()
 
-        // TODO pevest: Refacto to function call
+        // TODO pevest: Refactor to function call
         val customer = restClient.post()
             .uri("/customers")
             .body(newCustomer)
@@ -120,6 +118,7 @@ class CarRentalApplicationIntegrationTest(
 }
 
 // TODO pevest: Move into TestExtensions.kt
+// TODO pevest: Add inparams to function
 fun NewCustomer.Companion.example(): NewCustomer {
     val firstNames = listOf(
         "Sune",

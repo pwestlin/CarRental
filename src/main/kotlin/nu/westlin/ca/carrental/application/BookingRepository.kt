@@ -13,4 +13,5 @@ interface BookingRepository {
 
     fun deleteAllCustomerBookings(customerId: CustomerId)
     fun getBookingsForCustomer(customerId: Id<Customer, String>): List<Booking>
+    fun getBookings(): List<Booking>
 }

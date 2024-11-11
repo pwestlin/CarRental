@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@BookingsRequestMapping
+@CustomersRequestMapping
 class ListCustomerBookingsController(
     private val listCustomerBookings: ListCustomerBookingsUseCase
 ) {

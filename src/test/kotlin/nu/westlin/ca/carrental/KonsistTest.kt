@@ -5,10 +5,12 @@ import com.lemonappdev.konsist.api.architecture.KoArchitectureCreator.assertArch
 import com.lemonappdev.konsist.api.architecture.Layer
 import com.lemonappdev.konsist.api.ext.list.withAllAnnotationsOf
 import com.lemonappdev.konsist.api.ext.list.withNameEndingWith
+import com.lemonappdev.konsist.api.verify.assertFalse
 import com.lemonappdev.konsist.api.verify.assertTrue
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Repository
 import org.springframework.stereotype.Service
 import org.springframework.web.bind.annotation.RestController
@@ -64,6 +66,20 @@ class KonsistTest {
                 .classes()
                 .withAllAnnotationsOf(Service::class)
                 .assertTrue { it.hasNameEndingWith("Service") || it.hasNameEndingWith("UseCase") }
+        }
+
+        @Test
+        fun `always use constructor injection`() {
+            Konsist
+                .scopeFromProject()
+                .properties(includeNested = true)
+                .assertFalse {
+                    if (!it.isConstructorDefined) {
+                        it.hasAnnotationOf(Autowired::class)
+                    } else {
+                        false
+                    }
+                }
         }
     }
 
